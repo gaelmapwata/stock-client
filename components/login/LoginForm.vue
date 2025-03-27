@@ -1,6 +1,6 @@
 <template>
   <div class="login-form-container">
-    <h1>UBA-RDC E-TAX APP</h1>
+    <h1>UBA-RDC Gestion stock</h1>
     <h2 class="text-primary">
       AUTHENTIFICATION
     </h2>
@@ -59,7 +59,7 @@
     </Form>
   </div>
 
-  <LoginOtpDialog v-model="showOtpForm" :email="email" />
+  <LoginOtpDialog v-model="showOtpForm" :email="email" :token="token" />
 </template>
 
 <script lang="ts" setup>
@@ -80,6 +80,7 @@ const passwordVisible = ref(false)
 const loading = ref(false)
 const showOtpForm = ref(false)
 const email = ref()
+const token = ref()
 const { showErrorSnackbar } = snackbarStore
 
 const loginSchema = object({
@@ -91,13 +92,14 @@ const loginSchema = object({
 
 function onSubmit (values: FormValueI) {
   authStore.signin(values)
-    .then(({ error }) => {
+    .then(({ error, data }) => {
       loading.value = false
       if (error.value) {
         if (error.value.statusCode === 401) {
           showErrorSnackbar(error.value.data.msg || 'Identifiants incorrects')
         }
       } else {
+        token.value = data.value.token
         showOtpForm.value = true
       }
     })
