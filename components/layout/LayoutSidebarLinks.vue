@@ -129,6 +129,18 @@ const groupedMenuItems: Array<{
         icon: 'mdi-security',
         to: '/admin/roles',
         permissions: ['ROLE:ADD']
+      },
+      {
+        text: 'Type Articles',
+        icon: 'mdi-notebook',
+        to: '/admin/type-article',
+        permissions: ['TYPE_ARTICLE:CREATE']
+      },
+      {
+        text: 'Articles',
+        icon: 'mdi-package-variant-closed',
+        to: '/admin/articles',
+        permissions: ['TYPE_ARTICLE:CREATE']
       }
     ]
   }
