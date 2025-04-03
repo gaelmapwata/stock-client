@@ -112,6 +112,24 @@ const groupedMenuItems: Array<{
         text: 'Accueil',
         icon: 'mdi-view-dashboard',
         to: '/admin'
+      },
+      {
+        text: 'Initié la demande',
+        icon: 'mdi-bank-plus',
+        to: '/admin/add-request',
+        permissions: ['REQUEST:CREATE']
+      },
+      {
+        text: 'Approuve demande',
+        icon: 'mdi-bank',
+        to: '/admin/request-to-validate',
+        permissions: ['REQUEST:READ', 'REQUEST:READ_REQUESTS_TO_VALIDATE']
+      },
+      {
+        text: 'Demandes',
+        icon: 'mdi-bank',
+        to: '/admin/request-list',
+        permissions: ['REQUEST:READ', 'REQUEST:READ_OWN_REQUESTS']
       }
     ]
   },

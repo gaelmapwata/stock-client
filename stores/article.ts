@@ -5,7 +5,11 @@ import { ArticleI } from '../types/article'
 
 // eslint-disable-next-line import/prefer-default-export
 export const useArticleStore = defineStore('article', {
-  state: () => ({}),
+  state: () => ({
+    articles: [] as ArticleI[],
+    loading: false,
+    cached: false
+  }),
   actions: {
     storeArticle (article: ArticleI) {
       return new Promise((resolve) => {
@@ -22,6 +26,22 @@ export const useArticleStore = defineStore('article', {
           }
         })
       })
+    },
+
+    fetchArticles (force = false) {
+      if (!this.loading && (!this.cached || force)) {
+        this.loading = true
+
+        useFetchApi('/articles/all', {
+          method: 'get'
+        }).then(({ data }) => {
+          if (data.value) {
+            this.articles = data.value
+            this.loading = false
+            this.cached = true
+          }
+        })
+      }
     },
     // eslint-disable-next-line max-len
     fetchArticlesWithPagination ({ page, limit }: { page: number, limit: number }): Promise<HttpPaginationResponseI<ArticleI[]>> {
