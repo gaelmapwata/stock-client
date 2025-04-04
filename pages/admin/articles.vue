@@ -129,6 +129,14 @@ const headers = [
     key: 'label'
   },
   {
+    title: 'Description',
+    key: 'description'
+  },
+  {
+    title: 'Quantité en stock',
+    key: 'stockQuantity'
+  },
+  {
     title: 'Type article',
     key: 'typeArticles'
   }

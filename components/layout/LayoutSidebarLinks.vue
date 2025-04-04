@@ -126,6 +126,12 @@ const groupedMenuItems: Array<{
         permissions: ['REQUEST:READ', 'REQUEST:READ_REQUESTS_TO_VALIDATE']
       },
       {
+        text: 'Demande approuvé',
+        icon: 'mdi-bank',
+        to: '/admin/request-list-validated',
+        permissions: ['REQUEST:READ', 'REQUEST:READ_ALL_REQUESTS']
+      },
+      {
         text: 'Demandes',
         icon: 'mdi-bank',
         to: '/admin/request-list',
